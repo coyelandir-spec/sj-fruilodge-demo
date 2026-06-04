@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réservation & Paiement — S&J FRUI'LODGE</title>
+  <meta name="description" content="Réservez votre séjour, véhicule ou excursion à Antsiranana et réglez votre acompte en ligne (carte ou Mobile Money)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="index.html"><span><span class="mark"><span class="s">S&J</span> <span class="j">FRUI'LODGE</span></span><small>Voyages & Maison d'hôte</small></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="chambres.html">Chambres & Suites</a></li>
+      <li><a href="vehicules.html">Véhicules</a></li>
+      <li><a href="excursions.html">Excursions</a></li>
+      <li><a href="reservation.html" class="active">Réservation</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></nav>
+    <div class="nav__cta"><span class="lang"><b>FR</b> · EN</span><a href="#reservation-form" class="btn btn--green">Commencer</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Accueil</a> / Réservation & Paiement</div>
+      <h1>Réservation & Paiement</h1>
+      <p>Réservez en quelques minutes et sécurisez votre date avec un acompte. Simple, rapide et sécurisé.</p>
+    </div>
+  </section>
+
+  <!-- Étapes -->
+  <section class="section">
+    <div class="container">
+      <div class="center reveal"><p class="eyebrow">Comment ça marche</p><h2>4 étapes vers votre séjour</h2></div>
+      <div class="grid grid--2" style="margin-top:2rem;gap:1rem">
+        <div class="quote reveal" style="border-color:var(--orange)"><h3>1 · Choisissez</h3><p>Sélectionnez votre chambre, votre véhicule ou votre excursion, ainsi que vos dates.</p></div>
+        <div class="quote reveal delay-1" style="border-color:var(--orange)"><h3>2 · Demandez</h3><p>Remplissez le formulaire ci-dessous. Nous vérifions la disponibilité et vous répondons rapidement.</p></div>
+        <div class="quote reveal delay-1" style="border-color:var(--orange)"><h3>3 · Acompte</h3><p>Réglez un acompte sécurisé pour confirmer&nbsp;: carte bancaire ou Mobile Money.</p></div>
+        <div class="quote reveal delay-2" style="border-color:var(--orange)"><h3>4 · Confirmation</h3><p>Vous recevez une confirmation par e-mail. Le solde se règle sur place [modalités à préciser].</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaire + moyens de paiement -->
+  <section class="section section--tint">
+    <div class="container split" style="align-items:start">
+      <div class="reveal">
+        <p class="eyebrow">Votre demande</p>
+        <h2>Formulaire de réservation</h2>
+        <p class="lead">Indiquez vos besoins, nous nous occupons du reste.</p>
+        <div class="note" style="margin-bottom:1.2rem">🔒 <strong>Aperçu de démonstration.</strong> Ce formulaire n'envoie encore aucune donnée et ne débite aucun paiement. La version finale enverra votre demande et activera le paiement de l'acompte.</div>
+
+        <form id="reservation-form" class="form" novalidate>
+          <div class="row">
+            <div class="field"><label for="nom">Nom complet</label><input id="nom" name="nom" type="text" placeholder="Votre nom" required></div>
+            <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="vous@exemple.com" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="tel">Téléphone / WhatsApp</label><input id="tel" name="tel" type="tel" placeholder="+261 …"></div>
+            <div class="field"><label for="prestation">Prestation souhaitée</label>
+              <select id="prestation" name="prestation">
+                <option>Chambre / Suite</option><option>Location de véhicule</option><option>Excursion</option><option>Forfait combiné (séjour + véhicule + excursion)</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="arrivee">Date d'arrivée</label><input id="arrivee" name="arrivee" type="date"></div>
+            <div class="field"><label for="depart">Date de départ</label><input id="depart" name="depart" type="date"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="personnes">Nombre de personnes</label><input id="personnes" name="personnes" type="number" min="1" value="2"></div>
+            <div class="field"><label for="paiement">Mode de paiement de l'acompte</label>
+              <select id="paiement" name="paiement">
+                <option>Carte bancaire (Visa / Mastercard)</option><option>Mvola</option><option>Orange Money</option><option>Airtel Money</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="message">Précisions (optionnel)</label><textarea id="message" name="message" rows="3" placeholder="Vos envies, questions, demandes particulières…"></textarea></div>
+          <button type="submit" class="btn" style="width:100%">Envoyer ma demande de réservation</button>
+          <div class="form__success">✓ Merci&nbsp;! Votre demande a bien été simulée. Dans la version finale, vous recevriez une confirmation par e-mail et seriez invité(e) à régler l'acompte.</div>
+        </form>
+      </div>
+
+      <div class="reveal delay-1">
+        <p class="eyebrow">Paiement sécurisé</p>
+        <h2>Moyens de paiement</h2>
+        <p>Pour confirmer votre réservation, un acompte [montant/pourcentage à définir] vous sera demandé. Plusieurs options adaptées à Madagascar&nbsp;:</p>
+        <div class="pay-methods">
+          <span class="chip">💳 Carte Visa / Mastercard</span>
+          <span class="chip">📱 Mvola</span>
+          <span class="chip">📱 Orange Money</span>
+          <span class="chip">📱 Airtel Money</span>
+        </div>
+        <ul class="feature-list">
+          <li>Acompte pour bloquer votre date</li>
+          <li>Solde réglé sur place [ou avant arrivée — à définir]</li>
+          <li>Reçu envoyé par e-mail</li>
+          <li>Conditions d'annulation [à préciser]</li>
+        </ul>
+        <div class="note">ℹ️ Dans la démo, les logos et boutons de paiement sont illustratifs. L'activation réelle (carte + Mobile Money) se fera lors de la mise en service, via un prestataire de paiement.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div><h4>S&J FRUI'LODGE</h4><p>Voyages & Maison d'hôte à Antsiranana (Diego-Suarez), Madagascar.</p><p class="ph-inline">[Adresse exacte à compléter]</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="chambres.html">Chambres & Suites</a></li><li><a href="vehicules.html">Véhicules</a></li><li><a href="excursions.html">Excursions</a></li><li><a href="reservation.html">Réservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Tél. : <span class="ph-inline">[+261 …]</span></li><li>WhatsApp : <span class="ph-inline">[+261 …]</span></li><li>E-mail : <span class="ph-inline">[contact@sjfruilodge.mg]</span></li></ul></div>
+    </div>
+    <div class="container footer__bottom"><span>© <span data-year>2026</span> S&J FRUI'LODGE</span><span>Démo non contractuelle · tarifs provisoires</span></div>
+  </footer>
+  <div class="demo-ribbon"><b>DÉMO</b> — réservations & paiements non actifs</div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

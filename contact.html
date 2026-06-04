@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — S&J FRUI'LODGE, Antsiranana</title>
+  <meta name="description" content="Contactez S&J FRUI'LODGE à Antsiranana (Diego-Suarez) : téléphone, e-mail, WhatsApp et formulaire." />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="index.html"><span><span class="mark"><span class="s">S&J</span> <span class="j">FRUI'LODGE</span></span><small>Voyages & Maison d'hôte</small></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="chambres.html">Chambres & Suites</a></li>
+      <li><a href="vehicules.html">Véhicules</a></li>
+      <li><a href="excursions.html">Excursions</a></li>
+      <li><a href="reservation.html">Réservation</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul></nav>
+    <div class="nav__cta"><span class="lang"><b>FR</b> · EN</span><a href="reservation.html" class="btn btn--green">Réserver</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+  </header>
+
+  <section class="page-head" style="background:linear-gradient(180deg,rgba(31,94,58,.9),rgba(74,47,30,.85))">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Accueil</a> / Contact</div>
+      <h1>Contactez-nous</h1>
+      <p>Une question, une envie sur-mesure&nbsp;? Notre équipe locale vous répond avec plaisir.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split" style="align-items:start">
+      <div class="reveal">
+        <p class="eyebrow">Nos coordonnées</p>
+        <h2>Parlons de votre séjour</h2>
+        <ul class="feature-list" style="font-size:1rem;gap:.8rem;margin:1.2rem 0">
+          <li><strong>Adresse :</strong> <span class="ph-inline">[Adresse exacte à Antsiranana — à compléter]</span></li>
+          <li><strong>Téléphone :</strong> <span class="ph-inline">[+261 XX XX XXX XX]</span></li>
+          <li><strong>WhatsApp :</strong> <span class="ph-inline">[+261 XX XX XXX XX]</span></li>
+          <li><strong>E-mail :</strong> <span class="ph-inline">[contact@sjfruilodge.mg]</span></li>
+          <li><strong>Horaires :</strong> <span class="ph-inline">[à préciser]</span></li>
+        </ul>
+        <div class="hero__actions" style="justify-content:flex-start">
+          <a href="https://wa.me/261XXXXXXXXX" class="btn btn--wa">Discuter sur WhatsApp</a>
+          <a href="mailto:contact@sjfruilodge.mg" class="btn btn--ghost">Envoyer un e-mail</a>
+        </div>
+        <div class="media-box reveal" style="margin-top:1.6rem;aspect-ratio:16/9;background:linear-gradient(135deg,var(--blue),var(--green))">Carte / plan d'accès<br><small>(Google Maps à intégrer)</small></div>
+      </div>
+
+      <div class="reveal delay-1">
+        <p class="eyebrow">Écrivez-nous</p>
+        <h2>Formulaire de contact</h2>
+        <div class="note" style="margin:.8rem 0 1.2rem">🔒 Démo : ce formulaire n'envoie pas encore de message. Il sera connecté à votre e-mail dans la version finale.</div>
+        <form id="reservation-form" class="form" novalidate>
+          <div class="field"><label for="cnom">Nom</label><input id="cnom" type="text" placeholder="Votre nom" required></div>
+          <div class="field"><label for="cmail">E-mail</label><input id="cmail" type="email" placeholder="vous@exemple.com" required></div>
+          <div class="field"><label for="csujet">Sujet</label><input id="csujet" type="text" placeholder="Objet de votre message"></div>
+          <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" rows="4" placeholder="Votre message…"></textarea></div>
+          <button type="submit" class="btn" style="width:100%">Envoyer le message</button>
+          <div class="form__success">✓ Merci&nbsp;! Votre message a été simulé. Dans la version finale, il nous parviendrait directement.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div><h4>S&J FRUI'LODGE</h4><p>Voyages & Maison d'hôte à Antsiranana (Diego-Suarez), Madagascar.</p><p class="ph-inline">[Adresse exacte à compléter]</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="chambres.html">Chambres & Suites</a></li><li><a href="vehicules.html">Véhicules</a></li><li><a href="excursions.html">Excursions</a></li><li><a href="reservation.html">Réservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Tél. : <span class="ph-inline">[+261 …]</span></li><li>WhatsApp : <span class="ph-inline">[+261 …]</span></li><li>E-mail : <span class="ph-inline">[contact@sjfruilodge.mg]</span></li></ul></div>
+    </div>
+    <div class="container footer__bottom"><span>© <span data-year>2026</span> S&J FRUI'LODGE</span><span>Démo non contractuelle · tarifs provisoires</span></div>
+  </footer>
+  <div class="demo-ribbon"><b>DÉMO</b> — réservations & paiements non actifs</div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
