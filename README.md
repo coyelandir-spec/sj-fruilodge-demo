@@ -23,7 +23,7 @@ Démo statique (HTML/CSS/JS) du futur site vitrine et commercial de **S&J FRUI'L
 
 ## Voir la démo
 
-- **En ligne** : voir le lien GitHub Pages (ajouté après déploiement).
+- **En ligne** : https://coyelandir-spec.github.io/sj-fruilodge-demo/
 - **En local** : double-cliquer sur `index.html`.
 
 ## À fournir pour la version finale
