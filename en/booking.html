@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking & Payment — S&J FRUI'LODGE</title>
+  <meta name="description" content="Book your stay, vehicle or tour in Antsiranana and pay your deposit online (card or Mobile Money)." />
+  <link rel="icon" href="../assets/img/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="index.html"><span><span class="mark"><span class="s">S&J</span> <span class="j">FRUI'LODGE</span></span><small>Travel & Guesthouse</small></span></a>
+    <nav><ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms.html">Rooms</a></li>
+      <li><a href="vehicles.html">Vehicles</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="booking.html" class="active">Booking</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul></nav>
+    <div class="nav__cta"><span class="lang"><a href="../reservation.html" style="color:inherit">FR</a> · <b>EN</b></span><a href="#reservation-form" class="btn btn--green">Start</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Booking & Payment</div>
+      <h1>Booking & Payment</h1>
+      <p>Book in a few minutes and secure your date with a 50% deposit. Simple, fast and secure.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center reveal"><p class="eyebrow">How it works</p><h2>4 steps to your stay</h2></div>
+      <div class="grid grid--2" style="margin-top:2rem;gap:1rem">
+        <div class="quote reveal" style="border-color:var(--orange)"><h3>1 · Choose</h3><p>Select your room, vehicle or tour, along with your dates.</p></div>
+        <div class="quote reveal delay-1" style="border-color:var(--orange)"><h3>2 · Request</h3><p>Fill in the form below. We check availability and reply quickly.</p></div>
+        <div class="quote reveal delay-1" style="border-color:var(--orange)"><h3>3 · 50% deposit</h3><p>Pay 50% of the total to confirm: bank card or Mobile Money.</p></div>
+        <div class="quote reveal delay-2" style="border-color:var(--orange)"><h3>4 · Confirmation</h3><p>You receive an email confirmation. The balance is settled as agreed at booking.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container split" style="align-items:start">
+      <div class="reveal">
+        <p class="eyebrow">Your request</p>
+        <h2>Booking form</h2>
+        <p class="lead">Tell us what you need, we'll take care of the rest.</p>
+        <div class="note" style="margin-bottom:1.2rem">🔒 <strong>Demo preview.</strong> This form does not send data yet and does not charge any payment. The final version will send your request and enable the deposit payment.</div>
+
+        <form id="reservation-form" class="form" novalidate>
+          <div class="row">
+            <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" placeholder="Your name" required></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="tel">Phone / WhatsApp</label><input id="tel" name="tel" type="tel" placeholder="+261 …"></div>
+            <div class="field"><label for="service">Desired service</label>
+              <select id="service" name="service">
+                <option>Room</option><option>Vehicle rental</option><option>Tour</option><option>Combined package (stay + vehicle + tour)</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="arrival">Arrival date</label><input id="arrival" name="arrival" type="date"></div>
+            <div class="field"><label for="departure">Departure date</label><input id="departure" name="departure" type="date"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="people">Number of people</label><input id="people" name="people" type="number" min="1" value="2"></div>
+            <div class="field"><label for="payment">Deposit payment method</label>
+              <select id="payment" name="payment">
+                <option>Bank card (Visa / Mastercard)</option><option>Mvola</option><option>Orange Money</option><option>Airtel Money</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="message">Notes (optional)</label><textarea id="message" name="message" rows="3" placeholder="Your wishes, questions, special requests…"></textarea></div>
+          <button type="submit" class="btn" style="width:100%">Send my booking request</button>
+          <div class="form__success">✓ Thank you! Your request has been simulated. In the final version, you would receive an email confirmation and be invited to pay the deposit.</div>
+        </form>
+      </div>
+
+      <div class="reveal delay-1">
+        <p class="eyebrow">Secure payment</p>
+        <h2>Payment methods</h2>
+        <p>To confirm your booking (room, vehicle or tour), a <strong>50% deposit</strong> of the total amount is required. Several options suited to Madagascar:</p>
+        <div class="pay-methods">
+          <span class="chip">💳 Visa / Mastercard</span>
+          <span class="chip">📱 Mvola</span>
+          <span class="chip">📱 Orange Money</span>
+          <span class="chip">📱 Airtel Money</span>
+        </div>
+        <ul class="feature-list">
+          <li>50% deposit to secure your date</li>
+          <li>Balance settled as agreed at booking</li>
+          <li>Receipt sent by email</li>
+          <li>Cancellation terms [to be specified]</li>
+        </ul>
+        <div class="note">ℹ️ In the demo, the payment logos and buttons are illustrative. Real activation (card + Mobile Money) will be set up at go-live, via a payment provider.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div><img class="footer__logo" src="../assets/img/logo.jpg" alt="S&J FRUI'LODGE logo" /><p>Travel & Guesthouse in Antsiranana (Diego-Suarez), Madagascar.</p><p>Lot 54 Village JJ Maromagniry, Antanamitarana, Antsiranana-II</p></div>
+      <div><h4>Navigation</h4><ul><li><a href="rooms.html">Rooms</a></li><li><a href="vehicles.html">Vehicles</a></li><li><a href="tours.html">Tours</a></li><li><a href="booking.html">Booking</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>WhatsApp: 037 49 019 77</li><li>Phone: 037 71 32 280</li><li>Email: <a href="mailto:sjfrulodge@gmail.com">sjfrulodge@gmail.com</a></li><li><a href="https://www.facebook.com/profile.php?id=61589486435098" target="_blank" rel="noopener">Facebook</a></li></ul></div>
+    </div>
+    <div class="container footer__bottom"><span>© <span data-year>2026</span> S&J FRUI'LODGE</span><span>Non-contractual demo · indicative prices</span></div>
+  </footer>
+  <div class="demo-ribbon"><b>DEMO</b> — booking & payment not active</div>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
