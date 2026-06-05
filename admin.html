@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord (maquette) — S&J FRUI'LODGE</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#1f5e3a; --green-dark:#163f28; --orange:#e8732a; --orange-dark:#c95e1d;
+      --brown:#4a2f1e; --blue:#1f6f8b; --cream:#faf6ef; --cream-2:#fffdf8;
+      --ink:#2b2620; --muted:#6f675c; --line:#e7ddcd; --line-2:#efe7d9;
+      --serif:"Playfair Display",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+      --radius:16px; --shadow:0 14px 34px -20px rgba(74,47,30,.45); --shadow-sm:0 6px 16px -10px rgba(74,47,30,.4);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    .layout{display:grid;grid-template-columns:256px 1fr;min-height:100vh}
+
+    /* ----- Barre latérale ----- */
+    .side{background:var(--cream-2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:1.4rem 1rem;position:sticky;top:0;height:100vh}
+    .brand{display:flex;flex-direction:column;padding:.2rem .6rem 1.2rem;border-bottom:1px solid var(--line)}
+    .brand .mark{font-family:var(--serif);font-weight:700;font-size:1.2rem;letter-spacing:.01em}
+    .brand .mark .s{color:var(--green)} .brand .mark .j{color:var(--orange)}
+    .brand small{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-top:.15rem}
+    .nav{display:flex;flex-direction:column;gap:.2rem;margin-top:1rem;flex:1}
+    .nav a{display:flex;align-items:center;gap:.7rem;padding:.6rem .7rem;border-radius:10px;font-size:.92rem;font-weight:500;color:var(--muted);transition:.2s}
+    .nav a .ic{width:20px;text-align:center;opacity:.9}
+    .nav a:hover{background:var(--cream);color:var(--ink)}
+    .nav a.active{background:var(--green);color:#fff;font-weight:600;box-shadow:var(--shadow-sm)}
+    .nav .badge{margin-left:auto;background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:.05rem .45rem;border-radius:999px}
+    .nav a.active .badge{background:#fff;color:var(--green)}
+    .side__foot{display:flex;align-items:center;gap:.6rem;padding:.7rem;border-top:1px solid var(--line);font-size:.85rem}
+    .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--green));color:#fff;display:grid;place-items:center;font-weight:700}
+
+    /* ----- Zone principale ----- */
+    .main{padding:1.6rem clamp(1rem,3vw,2.4rem)}
+    .topbar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+    .topbar h1{font-family:var(--serif);font-size:1.7rem;margin:0;color:var(--brown)}
+    .topbar .sub{color:var(--muted);font-size:.9rem;margin-top:.15rem}
+    .topbar .spacer{flex:1}
+    .search{display:flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem .9rem;color:var(--muted);font-size:.88rem;min-width:200px}
+    .search input{border:0;outline:0;background:transparent;font-family:var(--sans);font-size:.88rem;width:100%}
+    .btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--orange);color:#fff;border:0;border-radius:999px;padding:.6rem 1.1rem;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--orange-dark)}
+    .btn--ghost{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}
+
+    /* ----- KPI ----- */
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem}
+    .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;box-shadow:var(--shadow-sm)}
+    .kpi .lab{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .kpi .val{font-family:var(--serif);font-size:1.9rem;color:var(--brown);margin-top:.3rem;line-height:1}
+    .kpi .delta{font-size:.8rem;margin-top:.45rem;font-weight:600}
+    .delta.up{color:var(--green)} .delta.down{color:#b4452f}
+    .kpi .ic{float:right;font-size:1.3rem;opacity:.5}
+
+    /* ----- Disposition contenu ----- */
+    .grid{display:grid;grid-template-columns:1.9fr 1fr;gap:1.2rem;align-items:start}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+    .panel__head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--line-2)}
+    .panel__head h2{font-family:var(--serif);font-size:1.15rem;margin:0;color:var(--brown)}
+    .panel__head a{font-size:.82rem;color:var(--green);font-weight:600}
+
+    /* tabs */
+    .tabs{display:flex;gap:.4rem;padding:.7rem 1.2rem 0;flex-wrap:wrap}
+    .tab{font-size:.82rem;font-weight:600;color:var(--muted);padding:.35rem .7rem;border-radius:999px;cursor:pointer;border:1px solid transparent}
+    .tab.active{background:var(--cream);color:var(--green);border-color:var(--line)}
+
+    /* table */
+    table{width:100%;border-collapse:collapse;font-size:.9rem}
+    thead th{text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:.7rem 1.2rem;border-bottom:1px solid var(--line-2)}
+    tbody td{padding:.8rem 1.2rem;border-bottom:1px solid var(--line-2);vertical-align:middle}
+    tbody tr:hover{background:var(--cream)}
+    .client{display:flex;align-items:center;gap:.6rem}
+    .client .ava{width:32px;height:32px;border-radius:50%;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;color:var(--green);font-size:.8rem}
+    .client b{font-weight:600} .client small{display:block;color:var(--muted);font-size:.76rem}
+    .muted{color:var(--muted)}
+    .amount{font-weight:600}
+    .badge-st{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:600;padding:.22rem .6rem;border-radius:999px}
+    .badge-st::before{content:"";width:7px;height:7px;border-radius:50%}
+    .st-ok{background:#eaf5ec;color:#1f6f43} .st-ok::before{background:#2f9e5d}
+    .st-wait{background:#fdf0e3;color:#b86412} .st-wait::before{background:var(--orange)}
+    .st-cancel{background:#f6e9e6;color:#9c4030} .st-cancel::before{background:#c0563f}
+    .dep{display:flex;flex-direction:column;gap:.25rem;min-width:120px}
+    .bar{height:6px;background:var(--line-2);border-radius:999px;overflow:hidden}
+    .bar i{display:block;height:100%;background:var(--green);border-radius:999px}
+    .row-act{color:var(--muted);font-size:1rem;cursor:pointer}
+
+    /* side panels */
+    .stack{display:flex;flex-direction:column;gap:1.2rem}
+    .list{padding:.4rem 0}
+    .li{display:flex;align-items:center;gap:.7rem;padding:.7rem 1.2rem;border-bottom:1px solid var(--line-2)}
+    .li:last-child{border-bottom:0}
+    .li .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--cream);font-size:1rem}
+    .li b{font-weight:600;font-size:.9rem} .li small{display:block;color:var(--muted);font-size:.78rem}
+    .li .amt{margin-left:auto;font-weight:700;color:var(--green)}
+    .content-edit{padding:1.2rem}
+    .ce-item{display:flex;align-items:center;gap:.7rem;padding:.6rem 0;border-bottom:1px dashed var(--line)}
+    .ce-item:last-child{border-bottom:0}
+    .ce-item .ic{width:30px;text-align:center}
+    .ce-item .pen{margin-left:auto;color:var(--green);font-size:.82rem;font-weight:600}
+
+    .ribbon{position:fixed;bottom:16px;right:16px;background:var(--brown);color:#fff;font-size:.76rem;font-weight:600;padding:.5rem .9rem;border-radius:999px;box-shadow:var(--shadow);z-index:20}
+    .ribbon b{color:var(--orange)}
+    .note{background:#fff8ed;border:1px dashed var(--orange);color:var(--brown);border-radius:12px;padding:.7rem 1rem;font-size:.85rem;margin-bottom:1.4rem}
+
+    @media(max-width:1000px){ .kpis{grid-template-columns:repeat(2,1fr)} .grid{grid-template-columns:1fr} }
+    @media(max-width:760px){ .layout{grid-template-columns:1fr} .side{display:none} }
+  </style>
+</head>
+<body>
+  <div class="layout">
+
+    <!-- ===== Barre latérale ===== -->
+    <aside class="side">
+      <div class="brand">
+        <span class="mark"><span class="s">S&J</span> <span class="j">FRUI'LODGE</span></span>
+        <small>Espace de gestion</small>
+      </div>
+      <nav class="nav">
+        <a href="#" class="active"><span class="ic">▦</span> Tableau de bord</a>
+        <a href="#"><span class="ic">📅</span> Réservations <span class="badge">5</span></a>
+        <a href="#"><span class="ic">🗓️</span> Calendrier</a>
+        <a href="#"><span class="ic">💳</span> Paiements</a>
+        <a href="#"><span class="ic">🛏️</span> Chambres & offres</a>
+        <a href="#"><span class="ic">🚙</span> Véhicules</a>
+        <a href="#"><span class="ic">🌋</span> Excursions</a>
+        <a href="#"><span class="ic">✏️</span> Contenu du site</a>
+        <a href="#"><span class="ic">✉️</span> Messages</a>
+        <a href="#"><span class="ic">⚙️</span> Réglages</a>
+      </nav>
+      <div class="side__foot">
+        <span class="avatar">SJ</span>
+        <span><b style="font-size:.85rem">S&J FRUI'LODGE</b><br><span class="muted" style="font-size:.76rem">Administratrice</span></span>
+      </div>
+    </aside>
+
+    <!-- ===== Zone principale ===== -->
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Bonjour 👋</h1>
+          <div class="sub">Voici l'activité de votre établissement — aujourd'hui, jeudi 5 juin 2026</div>
+        </div>
+        <div class="spacer"></div>
+        <label class="search"><span>🔍</span><input placeholder="Rechercher une réservation, un client…"></label>
+        <button class="btn">＋ Nouvelle réservation</button>
+      </div>
+
+      <div class="note">🔒 <b>Maquette de démonstration</b> — données fictives. Ceci illustre l'apparence du futur tableau de bord (réservations, acomptes, contenu). Rien n'est encore connecté.</div>
+
+      <!-- KPI -->
+      <section class="kpis">
+        <div class="kpi"><span class="ic">📅</span><div class="lab">Réservations (juin)</div><div class="val">28</div><div class="delta up">▲ 12 % vs mai</div></div>
+        <div class="kpi"><span class="ic">⏳</span><div class="lab">En attente</div><div class="val">5</div><div class="delta down">à confirmer</div></div>
+        <div class="kpi"><span class="ic">💰</span><div class="lab">Acomptes encaissés</div><div class="val">3,2 M<small style="font-size:.8rem"> Ar</small></div><div class="delta up">▲ 8 %</div></div>
+        <div class="kpi"><span class="ic">🛏️</span><div class="lab">Taux d'occupation</div><div class="val">76 %</div><div class="delta up">▲ 5 pts</div></div>
+      </section>
+
+      <div class="grid">
+        <!-- Réservations -->
+        <section class="panel">
+          <div class="panel__head"><h2>Réservations récentes</h2><a href="#">Tout voir →</a></div>
+          <div class="tabs">
+            <span class="tab active">Toutes</span><span class="tab">Confirmées</span><span class="tab">En attente</span><span class="tab">Annulées</span>
+          </div>
+          <table>
+            <thead><tr><th>Client</th><th>Prestation</th><th>Dates</th><th>Acompte</th><th>Statut</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><div class="client"><span class="ava">AR</span><span><b>A. Rakoto</b><small>+261 34 12 345 67</small></span></div></td>
+                <td>Bungalow Vue Baie<small class="muted" style="display:block">2 nuits · 2 pers.</small></td>
+                <td>12 → 14 juin</td>
+                <td><div class="dep"><span class="amount">240 000 Ar</span><div class="bar"><i style="width:100%"></i></div><small class="muted">payé</small></div></td>
+                <td><span class="badge-st st-ok">Confirmée</span></td>
+                <td><span class="row-act">⋯</span></td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="ava">MD</span><span><b>M. Dubois</b><small>marie.d@email.com</small></span></div></td>
+                <td>Location SUV 4×4<small class="muted" style="display:block">3 jours</small></td>
+                <td>15 → 18 juin</td>
+                <td><div class="dep"><span class="amount">150 000 Ar</span><div class="bar"><i style="width:50%"></i></div><small class="muted">acompte 50 %</small></div></td>
+                <td><span class="badge-st st-wait">En attente</span></td>
+                <td><span class="row-act">⋯</span></td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="ava">JS</span><span><b>J. Smith</b><small>+261 32 98 765 43</small></span></div></td>
+                <td>Excursion Mer d'Émeraude<small class="muted" style="display:block">4 pers.</small></td>
+                <td>13 juin</td>
+                <td><div class="dep"><span class="amount">320 000 Ar</span><div class="bar"><i style="width:100%"></i></div><small class="muted">payé</small></div></td>
+                <td><span class="badge-st st-ok">Confirmée</span></td>
+                <td><span class="row-act">⋯</span></td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="ava">PR</span><span><b>P. Randria</b><small>+261 33 11 223 44</small></span></div></td>
+                <td>Suite Familiale<small class="muted" style="display:block">4 nuits · 4 pers.</small></td>
+                <td>20 → 24 juin</td>
+                <td><div class="dep"><span class="amount">—</span><div class="bar"><i style="width:0%"></i></div><small class="muted">en attente de preuve</small></div></td>
+                <td><span class="badge-st st-wait">En attente</span></td>
+                <td><span class="row-act">⋯</span></td>
+              </tr>
+              <tr>
+                <td><div class="client"><span class="ava">LF</span><span><b>L. Fontaine</b><small>l.fontaine@email.com</small></span></div></td>
+                <td>Quad + excursion<small class="muted" style="display:block">2 pers.</small></td>
+                <td>10 juin</td>
+                <td><div class="dep"><span class="amount">annulé</span><div class="bar"><i style="width:0%;background:#c0563f"></i></div><small class="muted">remboursé</small></div></td>
+                <td><span class="badge-st st-cancel">Annulée</span></td>
+                <td><span class="row-act">⋯</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Colonne droite -->
+        <div class="stack">
+          <section class="panel">
+            <div class="panel__head"><h2>Paiements récents</h2><a href="#">Détails →</a></div>
+            <div class="list">
+              <div class="li"><span class="dot">📱</span><span><b>Mvola — A. Rakoto</b><small>Bungalow · aujourd'hui</small></span><span class="amt">+240 000 Ar</span></div>
+              <div class="li"><span class="dot">💳</span><span><b>Carte — J. Smith</b><small>Excursion · hier</small></span><span class="amt">+320 000 Ar</span></div>
+              <div class="li"><span class="dot">📱</span><span><b>Orange Money — N. Be</b><small>Scooter · hier</small></span><span class="amt">+60 000 Ar</span></div>
+              <div class="li"><span class="dot">📱</span><span><b>Airtel — H. Solo</b><small>Chambre · 3 juin</small></span><span class="amt">+120 000 Ar</span></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head"><h2>Modifier le site</h2><a href="#">Ouvrir l'éditeur →</a></div>
+            <div class="content-edit">
+              <div class="ce-item"><span class="ic">🏠</span><span>Page d'accueil — slogan & héro</span><span class="pen">Modifier ✎</span></div>
+              <div class="ce-item"><span class="ic">🛏️</span><span>Tarifs des chambres</span><span class="pen">Modifier ✎</span></div>
+              <div class="ce-item"><span class="ic">🚙</span><span>Flotte de véhicules</span><span class="pen">Modifier ✎</span></div>
+              <div class="ce-item"><span class="ic">🖼️</span><span>Galerie de photos</span><span class="pen">Modifier ✎</span></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="ribbon"><b>MAQUETTE</b> — tableau de bord (aperçu)</div>
+</body>
+</html>
