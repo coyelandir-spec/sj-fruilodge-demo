@@ -102,6 +102,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Bandeau démo ---------- */
 .demo-ribbon {
+  display: none; /* site fonctionnel : bandeau masqué */
   position: fixed; bottom: 18px; left: 18px; z-index: 60;
   background: var(--brown); color:#fff; font-size:.78rem; font-weight:600;
   padding:.5rem .9rem; border-radius:999px; box-shadow: var(--shadow);
