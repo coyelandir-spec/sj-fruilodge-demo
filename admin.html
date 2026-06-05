@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tableau de bord (maquette) — S&J FRUI'LODGE</title>
+  <title>Tableau de bord (maquette interactive) — S&J FRUI'LODGE</title>
   <meta name="robots" content="noindex" />
+  <link rel="icon" href="assets/img/logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
@@ -18,229 +19,458 @@
     *{box-sizing:border-box}
     body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
     a{text-decoration:none;color:inherit}
-
     .layout{display:grid;grid-template-columns:256px 1fr;min-height:100vh}
 
-    /* ----- Barre latérale ----- */
+    /* Barre latérale */
     .side{background:var(--cream-2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:1.4rem 1rem;position:sticky;top:0;height:100vh}
-    .brand{display:flex;flex-direction:column;padding:.2rem .6rem 1.2rem;border-bottom:1px solid var(--line)}
-    .brand .mark{font-family:var(--serif);font-weight:700;font-size:1.2rem;letter-spacing:.01em}
-    .brand .mark .s{color:var(--green)} .brand .mark .j{color:var(--orange)}
-    .brand small{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-top:.15rem}
-    .nav{display:flex;flex-direction:column;gap:.2rem;margin-top:1rem;flex:1}
-    .nav a{display:flex;align-items:center;gap:.7rem;padding:.6rem .7rem;border-radius:10px;font-size:.92rem;font-weight:500;color:var(--muted);transition:.2s}
-    .nav a .ic{width:20px;text-align:center;opacity:.9}
+    .brand{display:flex;align-items:center;gap:.6rem;padding:.2rem .4rem 1.1rem;border-bottom:1px solid var(--line)}
+    .brand img{width:40px;height:40px;border-radius:9px;object-fit:cover;background:#fff;border:1px solid var(--line)}
+    .brand b{font-family:var(--serif);font-size:1.02rem;line-height:1.1;display:block}
+    .brand small{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+    .nav{display:flex;flex-direction:column;gap:.15rem;margin-top:.9rem;flex:1;overflow:auto}
+    .nav a{display:flex;align-items:center;gap:.7rem;padding:.58rem .7rem;border-radius:10px;font-size:.9rem;font-weight:500;color:var(--muted);cursor:pointer;transition:.15s}
+    .nav a .ic{width:20px;text-align:center}
     .nav a:hover{background:var(--cream);color:var(--ink)}
     .nav a.active{background:var(--green);color:#fff;font-weight:600;box-shadow:var(--shadow-sm)}
-    .nav .badge{margin-left:auto;background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:.05rem .45rem;border-radius:999px}
+    .nav .badge{margin-left:auto;background:var(--orange);color:#fff;font-size:.68rem;font-weight:700;padding:.05rem .42rem;border-radius:999px}
     .nav a.active .badge{background:#fff;color:var(--green)}
-    .side__foot{display:flex;align-items:center;gap:.6rem;padding:.7rem;border-top:1px solid var(--line);font-size:.85rem}
+    .side__foot{display:flex;align-items:center;gap:.6rem;padding:.7rem .4rem 0;border-top:1px solid var(--line);font-size:.82rem;margin-top:.5rem}
     .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--green));color:#fff;display:grid;place-items:center;font-weight:700}
 
-    /* ----- Zone principale ----- */
-    .main{padding:1.6rem clamp(1rem,3vw,2.4rem)}
-    .topbar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
-    .topbar h1{font-family:var(--serif);font-size:1.7rem;margin:0;color:var(--brown)}
-    .topbar .sub{color:var(--muted);font-size:.9rem;margin-top:.15rem}
+    /* Zone principale */
+    .main{padding:1.5rem clamp(1rem,3vw,2.4rem);overflow:auto}
+    .topbar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.3rem}
+    .topbar h1{font-family:var(--serif);font-size:1.55rem;margin:0;color:var(--brown)}
+    .topbar .sub{color:var(--muted);font-size:.86rem;margin-top:.15rem}
     .topbar .spacer{flex:1}
-    .search{display:flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem .9rem;color:var(--muted);font-size:.88rem;min-width:200px}
-    .search input{border:0;outline:0;background:transparent;font-family:var(--sans);font-size:.88rem;width:100%}
-    .btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--orange);color:#fff;border:0;border-radius:999px;padding:.6rem 1.1rem;font-weight:600;font-size:.9rem;cursor:pointer;box-shadow:var(--shadow-sm)}
+    .search{display:flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem .9rem;color:var(--muted);font-size:.86rem;min-width:210px}
+    .search input{border:0;outline:0;background:transparent;font-family:var(--sans);font-size:.86rem;width:100%}
+    .btn{display:inline-flex;align-items:center;gap:.45rem;background:var(--orange);color:#fff;border:0;border-radius:999px;padding:.55rem 1.05rem;font-weight:600;font-size:.88rem;cursor:pointer;box-shadow:var(--shadow-sm)}
     .btn:hover{background:var(--orange-dark)}
-    .btn--ghost{background:#fff;color:var(--green);border:1px solid var(--line);box-shadow:none}
 
-    /* ----- KPI ----- */
-    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem}
-    .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;box-shadow:var(--shadow-sm)}
-    .kpi .lab{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-    .kpi .val{font-family:var(--serif);font-size:1.9rem;color:var(--brown);margin-top:.3rem;line-height:1}
-    .kpi .delta{font-size:.8rem;margin-top:.45rem;font-weight:600}
+    .note{background:#fff8ed;border:1px dashed var(--orange);color:var(--brown);border-radius:12px;padding:.7rem 1rem;font-size:.85rem;margin-bottom:1.3rem}
+
+    /* Cartes KPI */
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+    .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:1.05rem 1.15rem;box-shadow:var(--shadow-sm)}
+    .kpi .lab{font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+    .kpi .val{font-family:var(--serif);font-size:1.8rem;color:var(--brown);margin-top:.3rem;line-height:1}
+    .kpi .delta{font-size:.78rem;margin-top:.4rem;font-weight:600}
     .delta.up{color:var(--green)} .delta.down{color:#b4452f}
-    .kpi .ic{float:right;font-size:1.3rem;opacity:.5}
+    .kpi .ic{float:right;font-size:1.25rem;opacity:.5}
 
-    /* ----- Disposition contenu ----- */
-    .grid{display:grid;grid-template-columns:1.9fr 1fr;gap:1.2rem;align-items:start}
-    .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
-    .panel__head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-bottom:1px solid var(--line-2)}
-    .panel__head h2{font-family:var(--serif);font-size:1.15rem;margin:0;color:var(--brown)}
-    .panel__head a{font-size:.82rem;color:var(--green);font-weight:600}
+    .grid2{display:grid;grid-template-columns:1.9fr 1fr;gap:1.1rem;align-items:start}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:1.1rem}
+    .panel__head{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border-bottom:1px solid var(--line-2)}
+    .panel__head h2{font-family:var(--serif);font-size:1.1rem;margin:0;color:var(--brown)}
+    .panel__head a,.panel__head .link{font-size:.82rem;color:var(--green);font-weight:600;cursor:pointer}
 
-    /* tabs */
-    .tabs{display:flex;gap:.4rem;padding:.7rem 1.2rem 0;flex-wrap:wrap}
-    .tab{font-size:.82rem;font-weight:600;color:var(--muted);padding:.35rem .7rem;border-radius:999px;cursor:pointer;border:1px solid transparent}
+    .tabs{display:flex;gap:.4rem;padding:.7rem 1.1rem 0;flex-wrap:wrap}
+    .tab{font-size:.82rem;font-weight:600;color:var(--muted);padding:.32rem .7rem;border-radius:999px;cursor:pointer;border:1px solid transparent;background:none}
     .tab.active{background:var(--cream);color:var(--green);border-color:var(--line)}
 
-    /* table */
-    table{width:100%;border-collapse:collapse;font-size:.9rem}
-    thead th{text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:.7rem 1.2rem;border-bottom:1px solid var(--line-2)}
-    tbody td{padding:.8rem 1.2rem;border-bottom:1px solid var(--line-2);vertical-align:middle}
+    table{width:100%;border-collapse:collapse;font-size:.88rem}
+    thead th{text-align:left;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:.65rem 1.1rem;border-bottom:1px solid var(--line-2)}
+    tbody td{padding:.7rem 1.1rem;border-bottom:1px solid var(--line-2);vertical-align:middle}
     tbody tr:hover{background:var(--cream)}
-    .client{display:flex;align-items:center;gap:.6rem}
-    .client .ava{width:32px;height:32px;border-radius:50%;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;color:var(--green);font-size:.8rem}
-    .client b{font-weight:600} .client small{display:block;color:var(--muted);font-size:.76rem}
-    .muted{color:var(--muted)}
-    .amount{font-weight:600}
-    .badge-st{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:600;padding:.22rem .6rem;border-radius:999px}
+    .client{display:flex;align-items:center;gap:.55rem}
+    .client .ava{width:30px;height:30px;border-radius:50%;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;color:var(--green);font-size:.76rem}
+    .client b{font-weight:600} .client small{display:block;color:var(--muted);font-size:.74rem}
+    .muted{color:var(--muted)} .amount{font-weight:600}
+    .badge-st{display:inline-flex;align-items:center;gap:.35rem;font-size:.74rem;font-weight:600;padding:.2rem .55rem;border-radius:999px}
     .badge-st::before{content:"";width:7px;height:7px;border-radius:50%}
     .st-ok{background:#eaf5ec;color:#1f6f43} .st-ok::before{background:#2f9e5d}
     .st-wait{background:#fdf0e3;color:#b86412} .st-wait::before{background:var(--orange)}
     .st-cancel{background:#f6e9e6;color:#9c4030} .st-cancel::before{background:#c0563f}
-    .dep{display:flex;flex-direction:column;gap:.25rem;min-width:120px}
-    .bar{height:6px;background:var(--line-2);border-radius:999px;overflow:hidden}
-    .bar i{display:block;height:100%;background:var(--green);border-radius:999px}
-    .row-act{color:var(--muted);font-size:1rem;cursor:pointer}
+    .btn-sm{font-size:.72rem;padding:.25rem .5rem;border-radius:7px;border:1px solid var(--line);background:#fff;cursor:pointer;margin-right:.2rem;font-weight:600;color:var(--muted)}
+    .btn-sm.ok{color:#1f6f43;border-color:#bfe0c5} .btn-sm.ok:hover{background:#eaf5ec}
+    .btn-sm.no{color:#9c4030;border-color:#e6c3ba} .btn-sm.no:hover{background:#f6e9e6}
 
-    /* side panels */
-    .stack{display:flex;flex-direction:column;gap:1.2rem}
-    .list{padding:.4rem 0}
-    .li{display:flex;align-items:center;gap:.7rem;padding:.7rem 1.2rem;border-bottom:1px solid var(--line-2)}
-    .li:last-child{border-bottom:0}
+    .list .li{display:flex;align-items:center;gap:.7rem;padding:.65rem 1.1rem;border-bottom:1px solid var(--line-2)}
+    .list .li:last-child{border-bottom:0}
     .li .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--cream);font-size:1rem}
-    .li b{font-weight:600;font-size:.9rem} .li small{display:block;color:var(--muted);font-size:.78rem}
+    .li b{font-weight:600;font-size:.9rem} .li small{display:block;color:var(--muted);font-size:.76rem}
     .li .amt{margin-left:auto;font-weight:700;color:var(--green)}
-    .content-edit{padding:1.2rem}
-    .ce-item{display:flex;align-items:center;gap:.7rem;padding:.6rem 0;border-bottom:1px dashed var(--line)}
-    .ce-item:last-child{border-bottom:0}
-    .ce-item .ic{width:30px;text-align:center}
-    .ce-item .pen{margin-left:auto;color:var(--green);font-size:.82rem;font-weight:600}
 
-    .ribbon{position:fixed;bottom:16px;right:16px;background:var(--brown);color:#fff;font-size:.76rem;font-weight:600;padding:.5rem .9rem;border-radius:999px;box-shadow:var(--shadow);z-index:20}
+    /* Calendrier */
+    .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:1rem}
+    .cal .dow{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:center;font-weight:600;padding:.2rem 0}
+    .cal .day{background:var(--cream-2);border:1px solid var(--line);border-radius:9px;min-height:62px;padding:.35rem;font-size:.8rem}
+    .cal .day .n{color:var(--muted);font-weight:600}
+    .cal .day.empty{background:transparent;border:0}
+    .cal .ev{display:block;font-size:.64rem;margin-top:.18rem;padding:.04rem .3rem;border-radius:5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ev-room{background:var(--green)} .ev-veh{background:var(--blue)} .ev-tour{background:var(--orange)}
+    .legend{display:flex;gap:1rem;flex-wrap:wrap;padding:0 1.1rem 1rem;font-size:.8rem;color:var(--muted)}
+    .legend span{display:inline-flex;align-items:center;gap:.4rem}
+    .legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+    .pad{padding:1.1rem}
+    .field{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.9rem}
+    .field label{font-size:.8rem;font-weight:600;color:var(--brown)}
+    .field input,.field select,.field textarea{font-family:var(--sans);font-size:.9rem;padding:.6rem .8rem;border:1px solid var(--line);border-radius:10px;background:var(--cream-2);color:var(--ink)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .saved{display:none;background:#eaf5ec;border:1px solid #bfe0c5;color:#1f6f43;border-radius:10px;padding:.6rem .9rem;font-size:.85rem;font-weight:600;margin-top:.4rem}
+
+    .view{display:none}
+    .view.active{display:block;animation:fade .25s ease}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    .ribbon{position:fixed;bottom:16px;right:16px;background:var(--brown);color:#fff;font-size:.74rem;font-weight:600;padding:.5rem .9rem;border-radius:999px;box-shadow:var(--shadow);z-index:20}
     .ribbon b{color:var(--orange)}
-    .note{background:#fff8ed;border:1px dashed var(--orange);color:var(--brown);border-radius:12px;padding:.7rem 1rem;font-size:.85rem;margin-bottom:1.4rem}
+    .menu-toggle{display:none}
 
-    @media(max-width:1000px){ .kpis{grid-template-columns:repeat(2,1fr)} .grid{grid-template-columns:1fr} }
-    @media(max-width:760px){ .layout{grid-template-columns:1fr} .side{display:none} }
+    @media(max-width:1000px){ .kpis{grid-template-columns:repeat(2,1fr)} .grid2{grid-template-columns:1fr} }
+    @media(max-width:760px){
+      .layout{grid-template-columns:1fr}
+      .side{position:fixed;z-index:30;width:250px;transform:translateX(-100%);transition:transform .3s}
+      .side.open{transform:none}
+      .menu-toggle{display:inline-flex}
+    }
   </style>
 </head>
 <body>
   <div class="layout">
 
     <!-- ===== Barre latérale ===== -->
-    <aside class="side">
+    <aside class="side" id="side">
       <div class="brand">
-        <span class="mark"><span class="s">S&J</span> <span class="j">FRUI'LODGE</span></span>
-        <small>Espace de gestion</small>
+        <img src="assets/img/logo.jpg" alt="Logo">
+        <span><b>S&J FRUI'LODGE</b><small>Espace de gestion</small></span>
       </div>
       <nav class="nav">
-        <a href="#" class="active"><span class="ic">▦</span> Tableau de bord</a>
-        <a href="#"><span class="ic">📅</span> Réservations <span class="badge">5</span></a>
-        <a href="#"><span class="ic">🗓️</span> Calendrier</a>
-        <a href="#"><span class="ic">💳</span> Paiements</a>
-        <a href="#"><span class="ic">🛏️</span> Chambres & offres</a>
-        <a href="#"><span class="ic">🚙</span> Véhicules</a>
-        <a href="#"><span class="ic">🌋</span> Excursions</a>
-        <a href="#"><span class="ic">✏️</span> Contenu du site</a>
-        <a href="#"><span class="ic">✉️</span> Messages</a>
-        <a href="#"><span class="ic">⚙️</span> Réglages</a>
+        <a data-view="dashboard" data-title="Tableau de bord" data-sub="Vue d'ensemble de l'activité" class="active"><span class="ic">▦</span> Tableau de bord</a>
+        <a data-view="reservations" data-title="Réservations" data-sub="Gérez les demandes et leurs statuts"><span class="ic">📅</span> Réservations <span class="badge">5</span></a>
+        <a data-view="calendar" data-title="Calendrier" data-sub="Disponibilités — Juin 2026"><span class="ic">🗓️</span> Calendrier</a>
+        <a data-view="payments" data-title="Paiements" data-sub="Acomptes & règlements"><span class="ic">💳</span> Paiements</a>
+        <a data-view="rooms" data-title="Chambres" data-sub="Catégories & tarifs"><span class="ic">🛏️</span> Chambres</a>
+        <a data-view="vehicles" data-title="Véhicules" data-sub="Flotte & tarifs"><span class="ic">🚙</span> Véhicules</a>
+        <a data-view="tours" data-title="Excursions" data-sub="Destinations proposées"><span class="ic">🌋</span> Excursions</a>
+        <a data-view="content" data-title="Contenu du site" data-sub="Modifier textes, tarifs, photos"><span class="ic">✏️</span> Contenu du site</a>
+        <a data-view="messages" data-title="Messages" data-sub="Demandes de contact" ><span class="ic">✉️</span> Messages <span class="badge">2</span></a>
+        <a data-view="settings" data-title="Réglages" data-sub="Coordonnées & paramètres"><span class="ic">⚙️</span> Réglages</a>
       </nav>
       <div class="side__foot">
         <span class="avatar">SJ</span>
-        <span><b style="font-size:.85rem">S&J FRUI'LODGE</b><br><span class="muted" style="font-size:.76rem">Administratrice</span></span>
+        <span><b style="font-size:.84rem">Administratrice</b><br><span class="muted" style="font-size:.74rem">S&J FRUI'LODGE</span></span>
       </div>
     </aside>
 
     <!-- ===== Zone principale ===== -->
     <main class="main">
       <div class="topbar">
+        <button class="btn menu-toggle" id="menuToggle" style="background:var(--green)">☰</button>
         <div>
-          <h1>Bonjour 👋</h1>
-          <div class="sub">Voici l'activité de votre établissement — aujourd'hui, jeudi 5 juin 2026</div>
+          <h1 id="pageTitle">Tableau de bord</h1>
+          <div class="sub" id="pageSub">Vue d'ensemble de l'activité — 5 juin 2026</div>
         </div>
         <div class="spacer"></div>
-        <label class="search"><span>🔍</span><input placeholder="Rechercher une réservation, un client…"></label>
-        <button class="btn">＋ Nouvelle réservation</button>
+        <label class="search"><span>🔍</span><input id="globalSearch" placeholder="Rechercher…"></label>
+        <button class="btn" id="newResaBtn">＋ Nouvelle réservation</button>
       </div>
 
-      <div class="note">🔒 <b>Maquette de démonstration</b> — données fictives. Ceci illustre l'apparence du futur tableau de bord (réservations, acomptes, contenu). Rien n'est encore connecté.</div>
+      <div class="note">🔒 <b>Maquette interactive</b> — données fictives. Navigue dans le menu de gauche, filtre les réservations, change un statut… c'est pour visualiser. Rien n'est connecté.</div>
 
-      <!-- KPI -->
-      <section class="kpis">
-        <div class="kpi"><span class="ic">📅</span><div class="lab">Réservations (juin)</div><div class="val">28</div><div class="delta up">▲ 12 % vs mai</div></div>
-        <div class="kpi"><span class="ic">⏳</span><div class="lab">En attente</div><div class="val">5</div><div class="delta down">à confirmer</div></div>
-        <div class="kpi"><span class="ic">💰</span><div class="lab">Acomptes encaissés</div><div class="val">3,2 M<small style="font-size:.8rem"> Ar</small></div><div class="delta up">▲ 8 %</div></div>
-        <div class="kpi"><span class="ic">🛏️</span><div class="lab">Taux d'occupation</div><div class="val">76 %</div><div class="delta up">▲ 5 pts</div></div>
+      <!-- ========== Tableau de bord ========== -->
+      <section class="view active" id="view-dashboard">
+        <div class="kpis">
+          <div class="kpi"><span class="ic">📅</span><div class="lab">Réservations (juin)</div><div class="val">28</div><div class="delta up">▲ 12 % vs mai</div></div>
+          <div class="kpi"><span class="ic">⏳</span><div class="lab">En attente</div><div class="val">5</div><div class="delta down">à confirmer</div></div>
+          <div class="kpi"><span class="ic">💰</span><div class="lab">Acomptes encaissés</div><div class="val">3,2 M<small style="font-size:.8rem"> Ar</small></div><div class="delta up">≈ 640 €</div></div>
+          <div class="kpi"><span class="ic">🛏️</span><div class="lab">Taux d'occupation</div><div class="val">76 %</div><div class="delta up">▲ 5 pts</div></div>
+        </div>
+        <div class="grid2">
+          <div class="panel">
+            <div class="panel__head"><h2>Réservations récentes</h2><span class="link" data-goto="reservations">Tout voir →</span></div>
+            <table>
+              <thead><tr><th>Client</th><th>Prestation</th><th>Dates</th><th>Statut</th></tr></thead>
+              <tbody>
+                <tr><td><div class="client"><span class="ava">AR</span><b>A. Rakoto</b></div></td><td>Bungalow Premium</td><td>12 → 14 juin</td><td><span class="badge-st st-ok">Confirmée</span></td></tr>
+                <tr><td><div class="client"><span class="ava">MD</span><b>M. Dubois</b></div></td><td>4×4 (3 j)</td><td>15 → 18 juin</td><td><span class="badge-st st-wait">En attente</span></td></tr>
+                <tr><td><div class="client"><span class="ava">JS</span><b>J. Smith</b></div></td><td>Mer d'Émeraude</td><td>13 juin</td><td><span class="badge-st st-ok">Confirmée</span></td></tr>
+                <tr><td><div class="client"><span class="ava">PR</span><b>P. Randria</b></div></td><td>Chambre Premium</td><td>20 → 24 juin</td><td><span class="badge-st st-wait">En attente</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="panel">
+              <div class="panel__head"><h2>Paiements récents</h2><span class="link" data-goto="payments">Détails →</span></div>
+              <div class="list">
+                <div class="li"><span class="dot">📱</span><span><b>Mvola — A. Rakoto</b><small>Bungalow · aujourd'hui</small></span><span class="amt">+240 000 Ar</span></div>
+                <div class="li"><span class="dot">💳</span><span><b>Carte — J. Smith</b><small>Excursion · hier</small></span><span class="amt">+320 000 Ar</span></div>
+                <div class="li"><span class="dot">📱</span><span><b>Orange Money — N. Be</b><small>Scooter · hier</small></span><span class="amt">+60 000 Ar</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel__head"><h2>Modifier le site</h2><span class="link" data-goto="content">Ouvrir →</span></div>
+              <div class="list">
+                <div class="li"><span class="dot">🏠</span><span><b>Page d'accueil</b><small>slogan & héro</small></span></div>
+                <div class="li"><span class="dot">🛏️</span><span><b>Tarifs des chambres</b><small>Standard / Premium</small></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <div class="grid">
-        <!-- Réservations -->
-        <section class="panel">
-          <div class="panel__head"><h2>Réservations récentes</h2><a href="#">Tout voir →</a></div>
-          <div class="tabs">
-            <span class="tab active">Toutes</span><span class="tab">Confirmées</span><span class="tab">En attente</span><span class="tab">Annulées</span>
+      <!-- ========== Réservations ========== -->
+      <section class="view" id="view-reservations">
+        <div class="panel">
+          <div class="panel__head"><h2>Toutes les réservations</h2><button class="btn" style="font-size:.8rem;padding:.4rem .8rem" id="newResaBtn2">＋ Ajouter</button></div>
+          <div class="tabs" id="resaTabs">
+            <button class="tab active" data-filter="all">Toutes</button>
+            <button class="tab" data-filter="ok">Confirmées</button>
+            <button class="tab" data-filter="wait">En attente</button>
+            <button class="tab" data-filter="cancel">Annulées</button>
           </div>
-          <table>
-            <thead><tr><th>Client</th><th>Prestation</th><th>Dates</th><th>Acompte</th><th>Statut</th><th></th></tr></thead>
+          <label class="search" style="margin:.7rem 1.1rem 0"><span>🔍</span><input id="resaSearch" placeholder="Rechercher un client, une prestation…"></label>
+          <table id="resaTable" style="margin-top:.5rem">
+            <thead><tr><th>Client</th><th>Prestation</th><th>Dates</th><th>Acompte</th><th>Statut</th><th>Action</th></tr></thead>
             <tbody>
-              <tr>
-                <td><div class="client"><span class="ava">AR</span><span><b>A. Rakoto</b><small>+261 34 12 345 67</small></span></div></td>
-                <td>Bungalow Vue Baie<small class="muted" style="display:block">2 nuits · 2 pers.</small></td>
-                <td>12 → 14 juin</td>
-                <td><div class="dep"><span class="amount">240 000 Ar</span><div class="bar"><i style="width:100%"></i></div><small class="muted">payé</small></div></td>
-                <td><span class="badge-st st-ok">Confirmée</span></td>
-                <td><span class="row-act">⋯</span></td>
-              </tr>
-              <tr>
-                <td><div class="client"><span class="ava">MD</span><span><b>M. Dubois</b><small>marie.d@email.com</small></span></div></td>
-                <td>Location SUV 4×4<small class="muted" style="display:block">3 jours</small></td>
-                <td>15 → 18 juin</td>
-                <td><div class="dep"><span class="amount">150 000 Ar</span><div class="bar"><i style="width:50%"></i></div><small class="muted">acompte 50 %</small></div></td>
-                <td><span class="badge-st st-wait">En attente</span></td>
-                <td><span class="row-act">⋯</span></td>
-              </tr>
-              <tr>
-                <td><div class="client"><span class="ava">JS</span><span><b>J. Smith</b><small>+261 32 98 765 43</small></span></div></td>
-                <td>Excursion Mer d'Émeraude<small class="muted" style="display:block">4 pers.</small></td>
-                <td>13 juin</td>
-                <td><div class="dep"><span class="amount">320 000 Ar</span><div class="bar"><i style="width:100%"></i></div><small class="muted">payé</small></div></td>
-                <td><span class="badge-st st-ok">Confirmée</span></td>
-                <td><span class="row-act">⋯</span></td>
-              </tr>
-              <tr>
-                <td><div class="client"><span class="ava">PR</span><span><b>P. Randria</b><small>+261 33 11 223 44</small></span></div></td>
-                <td>Suite Familiale<small class="muted" style="display:block">4 nuits · 4 pers.</small></td>
-                <td>20 → 24 juin</td>
-                <td><div class="dep"><span class="amount">—</span><div class="bar"><i style="width:0%"></i></div><small class="muted">en attente de preuve</small></div></td>
-                <td><span class="badge-st st-wait">En attente</span></td>
-                <td><span class="row-act">⋯</span></td>
-              </tr>
-              <tr>
-                <td><div class="client"><span class="ava">LF</span><span><b>L. Fontaine</b><small>l.fontaine@email.com</small></span></div></td>
-                <td>Quad + excursion<small class="muted" style="display:block">2 pers.</small></td>
-                <td>10 juin</td>
-                <td><div class="dep"><span class="amount">annulé</span><div class="bar"><i style="width:0%;background:#c0563f"></i></div><small class="muted">remboursé</small></div></td>
-                <td><span class="badge-st st-cancel">Annulée</span></td>
-                <td><span class="row-act">⋯</span></td>
-              </tr>
+              <tr data-status="ok"><td><div class="client"><span class="ava">AR</span><span><b>A. Rakoto</b><small>+261 34 12 345 67</small></span></div></td><td>Bungalow Premium<small class="muted" style="display:block">2 nuits · 2 pers.</small></td><td>12 → 14 juin</td><td><span class="amount">240 000 Ar</span></td><td><span class="badge-st st-ok">Confirmée</span></td><td><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="wait"><td><div class="client"><span class="ava">MD</span><span><b>M. Dubois</b><small>marie.d@email.com</small></span></div></td><td>Location 4×4<small class="muted" style="display:block">3 jours</small></td><td>15 → 18 juin</td><td><span class="amount">150 000 Ar</span></td><td><span class="badge-st st-wait">En attente</span></td><td><button class="btn-sm ok" data-action="confirm">Confirmer</button><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="ok"><td><div class="client"><span class="ava">JS</span><span><b>J. Smith</b><small>+261 32 98 765 43</small></span></div></td><td>Mer d'Émeraude<small class="muted" style="display:block">4 pers.</small></td><td>13 juin</td><td><span class="amount">320 000 Ar</span></td><td><span class="badge-st st-ok">Confirmée</span></td><td><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="wait"><td><div class="client"><span class="ava">PR</span><span><b>P. Randria</b><small>+261 33 11 223 44</small></span></div></td><td>Chambre Premium<small class="muted" style="display:block">4 nuits · 4 pers.</small></td><td>20 → 24 juin</td><td><span class="muted">en attente</span></td><td><span class="badge-st st-wait">En attente</span></td><td><button class="btn-sm ok" data-action="confirm">Confirmer</button><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="ok"><td><div class="client"><span class="ava">HB</span><span><b>H. Be</b><small>+261 34 55 667 88</small></span></div></td><td>Quad + guide<small class="muted" style="display:block">1 jour · 2 pers.</small></td><td>16 juin</td><td><span class="amount">450 000 Ar</span></td><td><span class="badge-st st-ok">Confirmée</span></td><td><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="wait"><td><div class="client"><span class="ava">LC</span><span><b>L. Chen</b><small>l.chen@email.com</small></span></div></td><td>Chambre Standard<small class="muted" style="display:block">3 nuits</small></td><td>22 → 25 juin</td><td><span class="muted">en attente</span></td><td><span class="badge-st st-wait">En attente</span></td><td><button class="btn-sm ok" data-action="confirm">Confirmer</button><button class="btn-sm no" data-action="cancel">Annuler</button></td></tr>
+              <tr data-status="cancel"><td><div class="client"><span class="ava">LF</span><span><b>L. Fontaine</b><small>l.fontaine@email.com</small></span></div></td><td>Scooter (2 j)<small class="muted" style="display:block">2 pers.</small></td><td>10 juin</td><td><span class="muted">remboursé</span></td><td><span class="badge-st st-cancel">Annulée</span></td><td><button class="btn-sm ok" data-action="confirm">Rétablir</button></td></tr>
             </tbody>
           </table>
-        </section>
-
-        <!-- Colonne droite -->
-        <div class="stack">
-          <section class="panel">
-            <div class="panel__head"><h2>Paiements récents</h2><a href="#">Détails →</a></div>
-            <div class="list">
-              <div class="li"><span class="dot">📱</span><span><b>Mvola — A. Rakoto</b><small>Bungalow · aujourd'hui</small></span><span class="amt">+240 000 Ar</span></div>
-              <div class="li"><span class="dot">💳</span><span><b>Carte — J. Smith</b><small>Excursion · hier</small></span><span class="amt">+320 000 Ar</span></div>
-              <div class="li"><span class="dot">📱</span><span><b>Orange Money — N. Be</b><small>Scooter · hier</small></span><span class="amt">+60 000 Ar</span></div>
-              <div class="li"><span class="dot">📱</span><span><b>Airtel — H. Solo</b><small>Chambre · 3 juin</small></span><span class="amt">+120 000 Ar</span></div>
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="panel__head"><h2>Modifier le site</h2><a href="#">Ouvrir l'éditeur →</a></div>
-            <div class="content-edit">
-              <div class="ce-item"><span class="ic">🏠</span><span>Page d'accueil — slogan & héro</span><span class="pen">Modifier ✎</span></div>
-              <div class="ce-item"><span class="ic">🛏️</span><span>Tarifs des chambres</span><span class="pen">Modifier ✎</span></div>
-              <div class="ce-item"><span class="ic">🚙</span><span>Flotte de véhicules</span><span class="pen">Modifier ✎</span></div>
-              <div class="ce-item"><span class="ic">🖼️</span><span>Galerie de photos</span><span class="pen">Modifier ✎</span></div>
-            </div>
-          </section>
         </div>
-      </div>
+      </section>
+
+      <!-- ========== Calendrier ========== -->
+      <section class="view" id="view-calendar">
+        <div class="panel">
+          <div class="panel__head"><h2>Juin 2026</h2><span class="muted" style="font-size:.82rem">Disponibilités & réservations</span></div>
+          <div class="cal" id="cal"></div>
+          <div class="legend">
+            <span><i style="background:var(--green)"></i> Chambre</span>
+            <span><i style="background:var(--blue)"></i> Véhicule</span>
+            <span><i style="background:var(--orange)"></i> Excursion</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Paiements ========== -->
+      <section class="view" id="view-payments">
+        <div class="kpis">
+          <div class="kpi"><div class="lab">Encaissé (juin)</div><div class="val">3,2 M<small style="font-size:.8rem"> Ar</small></div><div class="delta up">≈ 640 €</div></div>
+          <div class="kpi"><div class="lab">En attente</div><div class="val">510 K<small style="font-size:.8rem"> Ar</small></div><div class="delta down">3 acomptes</div></div>
+          <div class="kpi"><div class="lab">Mvola</div><div class="val">68 %</div><div class="delta up">moyen préféré</div></div>
+          <div class="kpi"><div class="lab">Carte</div><div class="val">21 %</div><div class="delta up">touristes</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><h2>Historique des paiements</h2></div>
+          <table>
+            <thead><tr><th>Date</th><th>Client</th><th>Moyen</th><th>Prestation</th><th>Montant</th></tr></thead>
+            <tbody>
+              <tr><td>5 juin</td><td>A. Rakoto</td><td>📱 Mvola</td><td>Bungalow Premium</td><td class="amount">240 000 Ar</td></tr>
+              <tr><td>4 juin</td><td>J. Smith</td><td>💳 Carte</td><td>Mer d'Émeraude</td><td class="amount">320 000 Ar</td></tr>
+              <tr><td>4 juin</td><td>N. Be</td><td>📱 Orange Money</td><td>Scooter</td><td class="amount">60 000 Ar</td></tr>
+              <tr><td>3 juin</td><td>H. Solo</td><td>📱 Airtel Money</td><td>Chambre Standard</td><td class="amount">120 000 Ar</td></tr>
+              <tr><td>2 juin</td><td>H. Be</td><td>📱 Mvola</td><td>Quad + guide</td><td class="amount">450 000 Ar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== Chambres ========== -->
+      <section class="view" id="view-rooms">
+        <div class="panel">
+          <div class="panel__head"><h2>Chambres</h2><button class="btn" style="font-size:.8rem;padding:.4rem .8rem">＋ Ajouter une catégorie</button></div>
+          <div class="list">
+            <div class="li"><span class="dot">🛏️</span><span><b>Chambre Standard</b><small>6 chambres · lit, salle d'eau, TV</small></span><span class="amt">90 000 – 120 000 Ar</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">✨</span><span><b>Chambre Premium</b><small>2 chambres · salon + prestations exclusives</small></span><span class="amt">150 000 – 180 000 Ar</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Véhicules ========== -->
+      <section class="view" id="view-vehicles">
+        <div class="panel">
+          <div class="panel__head"><h2>Flotte de véhicules</h2><button class="btn" style="font-size:.8rem;padding:.4rem .8rem">＋ Ajouter</button></div>
+          <div class="list">
+            <div class="li"><span class="dot">🚙</span><span><b>4×4</b><small>2 véhicules · avec/sans chauffeur</small></span><span class="amt">300 000 – 500 000 Ar/j</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🏍️</span><span><b>Motos cross</b><small>5 disponibles</small></span><span class="amt">80 000 Ar/j</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🛺</span><span><b>Quads</b><small>3 disponibles · avec/sans guide</small></span><span class="amt">450 000 – 900 000 Ar/j</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🛵</span><span><b>Scooters</b><small>6 disponibles</small></span><span class="amt">50 000 Ar/j</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Excursions ========== -->
+      <section class="view" id="view-tours">
+        <div class="panel">
+          <div class="panel__head"><h2>Excursions proposées</h2><button class="btn" style="font-size:.8rem;padding:.4rem .8rem">＋ Ajouter</button></div>
+          <div class="list">
+            <div class="li"><span class="dot">🏝️</span><span><b>Mer d'Émeraude</b><small>journée · mer</small></span><span class="amt">Sur demande</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🏖️</span><span><b>Les Trois Baies</b><small>plages · kitesurf</small></span><span class="amt">Sur demande</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🌿</span><span><b>Montagne d'Ambre</b><small>nature · cascades</small></span><span class="amt">Sur demande</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">🪨</span><span><b>Tsingy Rouges</b><small>découverte</small></span><span class="amt">Sur demande</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+            <div class="li"><span class="dot">⛰️</span><span><b>Parc de l'Ankarana</b><small>aventure</small></span><span class="amt">Sur demande</span><button class="btn-sm" style="margin-left:1rem">Modifier</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Contenu du site ========== -->
+      <section class="view" id="view-content">
+        <div class="grid2">
+          <div class="panel">
+            <div class="panel__head"><h2>Pages & sections</h2></div>
+            <div class="list">
+              <div class="li" data-edit="Slogan de la page d'accueil"><span class="dot">🏠</span><span><b>Accueil — slogan & héro</b><small>« L'évasion authentique… »</small></span><button class="btn-sm" style="margin-left:auto">Modifier ✎</button></div>
+              <div class="li" data-edit="Description du lodge"><span class="dot">📝</span><span><b>Notre philosophie</b><small>texte de présentation</small></span><button class="btn-sm" style="margin-left:auto">Modifier ✎</button></div>
+              <div class="li" data-edit="Tarifs des chambres"><span class="dot">🛏️</span><span><b>Tarifs des chambres</b><small>Standard / Premium</small></span><button class="btn-sm" style="margin-left:auto">Modifier ✎</button></div>
+              <div class="li" data-edit="Galerie de photos"><span class="dot">🖼️</span><span><b>Galerie de photos</b><small>21 photos</small></span><button class="btn-sm" style="margin-left:auto">Modifier ✎</button></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h2 id="editTitle">Éditeur</h2></div>
+            <div class="pad">
+              <div class="field"><label>Contenu à modifier</label><textarea id="editArea" rows="6" placeholder="Cliquez sur « Modifier » à gauche…">Cliquez sur « Modifier ✎ » à gauche pour éditer une section ici.</textarea></div>
+              <button class="btn" id="saveContent">Enregistrer</button>
+              <div class="saved" id="savedContent">✓ Modifications enregistrées (simulation).</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Messages ========== -->
+      <section class="view" id="view-messages">
+        <div class="grid2">
+          <div class="panel">
+            <div class="panel__head"><h2>Boîte de réception</h2></div>
+            <div class="list" id="msgList">
+              <div class="li" data-from="Sophie Martin" data-body="Bonjour, est-il possible d'avoir un transfert depuis l'aéroport pour notre arrivée le 18 juin ? Merci !"><span class="dot">✉️</span><span><b>Sophie Martin</b><small>Transfert aéroport ?</small></span></div>
+              <div class="li" data-from="Tom Becker" data-body="Hello, do you offer a 3-day package combining lodge + 4x4 + Emerald Sea tour? Thanks."><span class="dot">✉️</span><span><b>Tom Becker</b><small>3-day package?</small></span></div>
+              <div class="li" data-from="Rivo Andria" data-body="Salut, les quads sont-ils disponibles ce week-end pour 4 personnes ?"><span class="dot">✉️</span><span><b>Rivo Andria</b><small>Quads ce week-end</small></span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h2 id="msgFrom">Sélectionnez un message</h2></div>
+            <div class="pad" id="msgBody" style="min-height:120px;color:var(--muted)">Cliquez sur un message à gauche pour le lire.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Réglages ========== -->
+      <section class="view" id="view-settings">
+        <div class="grid2">
+          <div class="panel">
+            <div class="panel__head"><h2>Coordonnées de l'établissement</h2></div>
+            <div class="pad">
+              <div class="field"><label>Nom</label><input value="S&J FRUI'LODGE"></div>
+              <div class="row2">
+                <div class="field"><label>WhatsApp</label><input value="037 49 019 77"></div>
+                <div class="field"><label>Téléphone</label><input value="037 71 32 280"></div>
+              </div>
+              <div class="field"><label>E-mail</label><input value="sjfrulodge@gmail.com"></div>
+              <div class="field"><label>Adresse</label><input value="Lot 54 Village JJ Maromagniry, Antanamitarana, Antsiranana-II"></div>
+              <button class="btn" id="saveSettings">Enregistrer</button>
+              <div class="saved" id="savedSettings">✓ Réglages enregistrés (simulation).</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h2>Paramètres de réservation</h2></div>
+            <div class="pad">
+              <div class="field"><label>Acompte demandé</label><select><option>50 % du total</option><option>30 % du total</option><option>Montant fixe</option></select></div>
+              <div class="field"><label>Devise affichée</label><select><option>Ariary + Euro</option><option>Ariary seulement</option></select></div>
+              <div class="field"><label>Taux de change (1 € = … Ar)</label><input value="5000"></div>
+              <div class="field"><label>Notifications</label><select><option>E-mail + WhatsApp</option><option>E-mail seulement</option></select></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
-  <div class="ribbon"><b>MAQUETTE</b> — tableau de bord (aperçu)</div>
+  <div class="ribbon"><b>MAQUETTE</b> — interactive (données fictives)</div>
+
+  <script>
+  (function(){
+    const titleEl=document.getElementById('pageTitle'), subEl=document.getElementById('pageSub');
+    const navLinks=document.querySelectorAll('.nav a[data-view]');
+    const views=document.querySelectorAll('.view');
+    const side=document.getElementById('side');
+
+    function show(view){
+      views.forEach(v=>v.classList.toggle('active', v.id==='view-'+view));
+      navLinks.forEach(a=>{
+        const on=a.dataset.view===view; a.classList.toggle('active',on);
+        if(on){ titleEl.textContent=a.dataset.title; subEl.textContent=a.dataset.sub; }
+      });
+      document.querySelector('.main').scrollTo({top:0,behavior:'smooth'});
+      side.classList.remove('open');
+    }
+    navLinks.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();show(a.dataset.view);}));
+    document.querySelectorAll('[data-goto]').forEach(el=>el.addEventListener('click',()=>show(el.dataset.goto)));
+
+    // Menu mobile
+    const mt=document.getElementById('menuToggle');
+    if(mt) mt.addEventListener('click',()=>side.classList.toggle('open'));
+
+    // Onglets de filtre des réservations
+    const tabs=document.querySelectorAll('#resaTabs .tab');
+    const rows=()=>document.querySelectorAll('#resaTable tbody tr');
+    tabs.forEach(t=>t.addEventListener('click',()=>{
+      tabs.forEach(x=>x.classList.remove('active')); t.classList.add('active');
+      const f=t.dataset.filter;
+      rows().forEach(tr=>tr.style.display=(f==='all'||tr.dataset.status===f)?'':'none');
+    }));
+
+    // Recherche dans les réservations
+    const rs=document.getElementById('resaSearch');
+    if(rs) rs.addEventListener('input',()=>{const q=rs.value.toLowerCase();rows().forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');});
+
+    // Changer le statut d'une réservation (Confirmer / Annuler / Rétablir)
+    function rebind(){
+      document.querySelectorAll('#resaTable [data-action]').forEach(btn=>{
+        btn.onclick=()=>{const tr=btn.closest('tr');const badge=tr.querySelector('.badge-st');const cell=btn.parentElement;
+          if(btn.dataset.action==='confirm'){tr.dataset.status='ok';badge.className='badge-st st-ok';badge.textContent='Confirmée';cell.innerHTML='<button class="btn-sm no" data-action="cancel">Annuler</button>';}
+          else{tr.dataset.status='cancel';badge.className='badge-st st-cancel';badge.textContent='Annulée';cell.innerHTML='<button class="btn-sm ok" data-action="confirm">Rétablir</button>';}
+          rebind();};
+      });
+    }
+    rebind();
+
+    // Calendrier Juin 2026 (1er juin = lundi)
+    const cal=document.getElementById('cal');
+    if(cal){
+      const dows=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+      dows.forEach(d=>{const e=document.createElement('div');e.className='dow';e.textContent=d;cal.appendChild(e);});
+      const events={12:['room','veh'],13:['tour'],15:['veh'],16:['veh','tour'],17:['room'],20:['room'],21:['room'],22:['room','room'],23:['room'],24:['room'],10:['veh']};
+      const labels={room:'Chambre',veh:'Véhicule',tour:'Excursion'};
+      for(let d=1; d<=30; d++){
+        const cell=document.createElement('div'); cell.className='day';
+        let html='<span class="n">'+d+'</span>';
+        (events[d]||[]).forEach(t=>{html+='<span class="ev ev-'+t+'">'+labels[t]+'</span>';});
+        cell.innerHTML=html; cal.appendChild(cell);
+      }
+    }
+
+    // Éditeur de contenu
+    document.querySelectorAll('#view-content [data-edit]').forEach(li=>li.addEventListener('click',()=>{
+      document.getElementById('editTitle').textContent='Éditer : '+li.dataset.edit;
+      document.getElementById('editArea').value='Contenu actuel de « '+li.dataset.edit+' »…\n(modifiez ce texte puis Enregistrer)';
+      document.getElementById('savedContent').style.display='none';
+    }));
+    const sc=document.getElementById('saveContent');
+    if(sc) sc.addEventListener('click',()=>document.getElementById('savedContent').style.display='block');
+
+    // Messages
+    document.querySelectorAll('#msgList .li').forEach(li=>li.addEventListener('click',()=>{
+      document.getElementById('msgFrom').textContent=li.dataset.from;
+      document.getElementById('msgBody').style.color='var(--ink)';
+      document.getElementById('msgBody').textContent=li.dataset.body;
+    }));
+
+    // Réglages
+    const ss=document.getElementById('saveSettings');
+    if(ss) ss.addEventListener('click',()=>document.getElementById('savedSettings').style.display='block');
+
+    // Boutons "Nouvelle réservation"
+    [document.getElementById('newResaBtn'),document.getElementById('newResaBtn2')].forEach(b=>{if(b)b.addEventListener('click',()=>{show('reservations');alert('Maquette : ici s\\'ouvrirait le formulaire de création d\\'une réservation.');});});
+  })();
+  </script>
 </body>
 </html>
